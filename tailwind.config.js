@@ -10,6 +10,7 @@ module.exports = {
         'background': '#ecece7',
         'header': '#A28D69',
         'black': '#302B2B',
+        'side': '#9c9c9b',
       },
     },
   },
