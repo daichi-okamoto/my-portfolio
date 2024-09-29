@@ -151,7 +151,7 @@ function MainContent() {
           transform: 'translate(-50%, -50%)', // 中央に配置
           width: '100vw', // 背景画像の幅を調整可能
           height: '100vh', // 背景画像の高さを調整可能
-          backgroundImage: `url("/icon2-removebg.PNG")`, // 背景画像のパスを指定
+          backgroundImage: `url("/icon2-removebg.png")`, // 背景画像のパスを指定
           backgroundSize: 'contain', // 画像全体を表示する
           backgroundPosition: 'center', // 背景画像の位置を中央に設定
           backgroundRepeat: 'no-repeat', // 背景画像を繰り返さない
