@@ -651,8 +651,12 @@ video {
   margin-bottom: 2rem;
 }
 
-.-mt-20 {
-  margin-top: -5rem;
+.-mt-14 {
+  margin-top: -3.5rem;
+}
+
+.mb-14 {
+  margin-bottom: 3.5rem;
 }
 
 .mb-2 {
@@ -679,28 +683,16 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-20 {
+  margin-top: 5rem;
+}
+
 .mt-28 {
   margin-top: 7rem;
 }
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
-}
-
-.mb-14 {
-  margin-bottom: 3.5rem;
-}
-
-.-mt-16 {
-  margin-top: -4rem;
-}
-
-.-mt-14 {
-  margin-top: -3.5rem;
 }
 
 .block {
@@ -781,10 +773,6 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -889,6 +877,10 @@ video {
   object-fit: cover;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -897,27 +889,9 @@ video {
   padding: 2rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
-.p-20 {
-  padding: 5rem;
-}
-
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -925,14 +899,9 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-.py-28 {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .py-6 {
@@ -940,9 +909,8 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+.pb-16 {
+  padding-bottom: 4rem;
 }
 
 .pl-2 {
@@ -951,34 +919,6 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pb-20 {
-  padding-bottom: 5rem;
-}
-
-.pt-8 {
-  padding-top: 2rem;
-}
-
-.pb-32 {
-  padding-bottom: 8rem;
-}
-
-.pt-10 {
-  padding-top: 2.5rem;
-}
-
-.pb-40 {
-  padding-bottom: 10rem;
-}
-
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-
-.pb-16 {
-  padding-bottom: 4rem;
 }
 
 .text-left {
@@ -992,11 +932,6 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .text-sm {
@@ -1014,13 +949,12 @@ video {
   line-height: 1rem;
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .font-medium {
@@ -1029,14 +963,6 @@ video {
 
 .font-semibold {
   font-weight: 600;
-}
-
-.font-extralight {
-  font-weight: 200;
-}
-
-.font-extrabold {
-  font-weight: 800;
 }
 
 .leading-7 {
@@ -1085,11 +1011,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1152,19 +1073,24 @@ video {
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .md\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:text-4xl {
@@ -1180,11 +1106,6 @@ video {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 }
 
@@ -1218,10 +1139,6 @@ video {
     width: 1.75rem;
   }
 
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .lg\:flex-row {
     flex-direction: row;
   }
@@ -1245,14 +1162,14 @@ video {
     padding-right: 2rem;
   }
 
-  .lg\:py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
   .lg\:py-28 {
     padding-top: 7rem;
     padding-bottom: 7rem;
+  }
+
+  .lg\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .lg\:pl-4 {
@@ -1279,14 +1196,14 @@ video {
     line-height: 1.75rem;
   }
 
-  .lg\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .lg\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .lg\:font-semibold {
@@ -1337,16 +1254,6 @@ video {
     padding: 1rem;
   }
 
-  .xl\:py-32 {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
-  .xl\:py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
   .xl\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -1357,16 +1264,26 @@ video {
     padding-bottom: 2.5rem;
   }
 
+  .xl\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .xl\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .xl\:pb-40 {
+    padding-bottom: 10rem;
+  }
+
   .xl\:pl-10 {
     padding-left: 2.5rem;
   }
 
   .xl\:pt-10 {
     padding-top: 2.5rem;
-  }
-
-  .xl\:pb-40 {
-    padding-bottom: 10rem;
   }
 
   .xl\:text-2xl {
