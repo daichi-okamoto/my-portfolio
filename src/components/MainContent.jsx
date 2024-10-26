@@ -119,6 +119,19 @@ const projects = [
       githubIcon: <FontAwesomeIcon icon={faGithub} />,
     }
   },
+  {
+    id: 5,
+    title: 'ホームページ制作',
+    description: '高森サッカークラブのホームページ制作の詳細説明です...',
+    image: '/pf-takamori-sc.jpg',
+    images: ['/pf-takamori.jpg', '/pf-takamori2.jpg', '/pf-takamori3.jpg'],
+    details: {
+      text: '高森サッカークラブのホームページを制作しました。作成期間も短く、とにかく費用がかからないように且つプロっぽいホームページにしたいとご要望があったためWordPressの無料テーマLightningを使用して、サイトの制作を行いました。チームエンブレムのデザインも行いました。無料テーマでも工夫と追加CSSで見た目よく仕上げることができたと思います。',
+      languages: 'WordPress, Lightning, HTML/CSS, PHP',
+      websiteLink: 'https://takamori-sc.site/',
+      siteTitle: '高森サッカークラブ'
+    }
+  },
 ];
 
 function MainContent() {
