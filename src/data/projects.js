@@ -72,6 +72,19 @@ export const projects = [
       siteTitle: '高森サッカークラブ'
     }
   },
+  {
+    id: 6,
+    title: 'ホームページ制作',
+    description: '整理収納アドバイザーのホームページ制作の詳細説明です...',
+    image: '/studio4.png',
+    images: ['/studio1.jpg', '/studio2.jpg', '/studio4.jpg'],
+    details: {
+      text: '整理収納アドバイザーのホームページを制作しました。Studioを使用して、サイトの制作を行いました。ノーコードでWebサイトを作成できるため、費用を抑えることができます。愛知県岡崎市に住んでいる方はぜひご利用ください。Studioでもホームページを作成できますので費用を抑えてホームページを作成したい方もぜひご利用ください。',
+      languages: 'Studio',
+      websiteLink: 'https://kataduke-aya.studio.site/',
+      siteTitle: '片付けあーやー'
+    }
+  },
 ];
 
 export const sliderSettings = {
