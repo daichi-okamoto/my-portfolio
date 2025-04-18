@@ -85,6 +85,22 @@ export const projects = [
       siteTitle: '片付けあーやー'
     }
   },
+  {
+    id: 7,
+    title: 'LP制作',
+    description: '空き家を賃貸にするサービスのLPを制作しました...',
+    image: '/onomichi-lp.png',
+    images: ['/onomichi-lp1.jpg', '/onomichi-lp2.jpg', '/onomichi-lp3.jpg'],
+    details: {
+      text: '空き家を賃貸にするサービスのLPを制作しました。広島県の尾道、福山、三原で空き家を賃貸にするサービスを行っているそうです。家の周りの草刈り、遺品整理、家の改修から賃貸にするまでワンストップで行っていますので、気になった方はぜひご利用ください。LPはWordPressで作成しました。テーマは独自テーマを作成しました。',
+      languages: 'WordPress, HTML/CSS, PHP, GitHub',
+      websiteLink: 'https://www.lp.okomarigotokaiketsu.site/',
+      siteTitle: '空き家を賃貸にするサービス',
+      githubLink: 'https://github.com/daichi-okamoto/onomichi_lp',
+      githubTitle: 'Github',
+      githubIcon: <FontAwesomeIcon icon={faGithub} />,
+    }
+  },
 ];
 
 export const sliderSettings = {
