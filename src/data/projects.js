@@ -101,6 +101,22 @@ export const projects = [
       githubIcon: <FontAwesomeIcon icon={faGithub} />,
     }
   },
+  {
+    id: 8,
+    title: 'ホームページ制作',
+    description: 'アザリー飯田のホームページを制作しました...',
+    image: '/azaleeiida1.png',
+    images: ['/azaleeiida.jpg', '/azaleeiida2.jpg', '/azaleeiida3.jpg'],
+    details: {
+      text: 'サッカーチーム「アザリー飯田」の公式ホームページをリニューアルしました。元のサイトはページ数が多く情報が分散していたため、見やすさと分かりやすさを重視して構成を再設計。ヒアリング時点で「しっかり活動しているチームであることを伝えたい」との要望を受け、必要な情報を整理し、不要なページを統合することで、コンテンツをすっきりとまとめました。PC表示では左側に固定メニューを配置し、求めている情報に素早く辿り着ける設計を実現。試合情報や選手・スタッフ紹介など、ユーザーがよく閲覧するページへスムーズにアクセスできるよう工夫しました。ページ数が多かったため、デザインから実装、WordPressテーマの構築までに約3ヶ月をかけ、完成度の高いホームページに仕上げています。',
+      languages: 'WordPress, HTML/CSS, Scss, JavaScript, PHP, GitHub',
+      websiteLink: 'https://www.azaleeiida.com/',
+      siteTitle: 'アザリー飯田',
+      githubLink: 'https://github.com/daichi-okamoto/azalee_theme',
+      githubTitle: 'Github',
+      githubIcon: <FontAwesomeIcon icon={faGithub} />,
+    }
+  },
 ];
 
 export const sliderSettings = {
