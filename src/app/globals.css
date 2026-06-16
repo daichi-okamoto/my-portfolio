@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* === 温かみのある世界観パレット（VUILD参考・後で正確値に差し替え可） ===
+     Tailwindの /opacity モディファイアを効かせるため RGBチャンネル(空白区切り)で定義 */
+  --color-bg: 236 228 214;        /* 生成りクリーム（ベース背景） */
+  --color-surface: 244 238 226;   /* やや明るい面 */
+  --color-ink: 44 38 32;          /* 深いウォームブラウン（本文文字） */
+  --color-muted: 156 142 121;     /* くすみ補助色 */
+  --color-line: 217 207 190;      /* 罫線 */
+  --color-accent: 194 104 59;     /* テラコッタ（アクセント） */
+  --color-accent-soft: 232 185 140; /* 柔らかいピーチ */
+
+  /* フォント */
+  --font-sans: 'Zen Kaku Gothic New';
+  --font-serif: 'Shippori Mincho';
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-ink));
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Hiragino Kaku Gothic ProN', 'Roboto', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* カスタムカーソル有効時は標準カーソルを隠す（入力欄はテキストカーソルを維持） */
+.cursor-none,
+.cursor-none * {
+  cursor: none !important;
+}
+.cursor-none input,
+.cursor-none textarea,
+.cursor-none select {
+  cursor: text !important;
+}
+
+/* スクロールヒントのバウンス */
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+.animate-scroll-hint {
+  animation: scroll-hint 1.8s ease-in-out infinite;
+}

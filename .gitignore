@@ -10,6 +10,14 @@
 
 # production
 /build
+/.next/
+/out/
+
+# next.js
+next-env.d.ts
+
+# vercel
+.vercel
 
 # misc
 .DS_Store

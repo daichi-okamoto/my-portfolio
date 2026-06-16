@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Slider from 'react-slick';
 import { sliderSettings } from '../../../data/projects';
 import 'slick-carousel/slick/slick.css';
@@ -19,7 +22,7 @@ const ProjectModal = ({ project, onClose }) => {
       onClick={onClose}
     >
       <motion.div
-        className="bg-neutral-200 p-8 w-5/6 h-5/6 overflow-y-auto flex flex-col lg:flex-row relative"
+        className="bg-surface rounded-sm p-8 w-5/6 h-5/6 overflow-y-auto flex flex-col lg:flex-row relative"
         initial={{ y: 0, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 0, opacity: 0 }}
@@ -63,8 +66,8 @@ const ProjectModal = ({ project, onClose }) => {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                {project.details.githubIcon}
-                <p>{project.details.githubTitle}</p>
+                <FontAwesomeIcon icon={faGithub} />
+                <p>Github</p>
               </a>
             </div>
           )}

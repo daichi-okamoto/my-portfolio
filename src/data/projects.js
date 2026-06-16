@@ -1,11 +1,9 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+// microCMS未接続時のフォールバック用ローカルデータ（プレーンなJSONのみ。JSXは含めない）
 export const projects = [
   {
     id: 1,
     title: 'Care Shift',
-    description: 'シフト自動作成アプリの詳細説明です...',
+    description: 'シフト自動作成アプリ',
     image: '/portfolio2.png',
     images: ['/pf-cs-top.jpg', '/pf-cs-staff1.png', '/pf-cs-shift.png'],
     details: {
@@ -14,81 +12,75 @@ export const projects = [
       githubLink: 'https://github.com/daichi-okamoto/my-app',
       websiteLink: 'https://care-shift.com/',
       siteTitle: 'Care Shift',
-      githubTitle: 'Github',
-      githubIcon: <FontAwesomeIcon icon={faGithub} />,
-    }
+    },
   },
   {
     id: 2,
     title: 'ポートフォリオサイト',
-    description: 'ポートフォリオサイトの詳細説明です...',
+    description: '個人ポートフォリオサイト',
     image: '/pf1.png',
     images: ['/pf-pf.png', '/pf-pf1.png', '/pf-pf2.png'],
     details: {
       text: '個人のポートフォリオサイトを作成しました。フロントエンドの技術にも興味があり、Reactを使用してポートフォリオサイトを実装しました。TailwindCSSでデザインを行い、GitHubでソースコードを管理しています。Reactを使用することによって、ユーザーがスムーズにページを遷移できるため、ポートフォリオサイトのユーザー体験を向上させることができました。',
       languages: 'React, Framer Motion, React Slick, Tailwind CSS, Vercel, Git, GitHub',
       githubLink: 'https://github.com/daichi-okamoto/my-portfolio',
-      githubTitle: 'Github',
-      githubIcon: <FontAwesomeIcon icon={faGithub} />,
-    }
+    },
   },
   {
     id: 3,
     title: 'ブログ',
-    description: 'ブログの詳細説明です...',
+    description: '個人ブログ',
     image: '/pf-blog1.png',
     images: ['/pf-blog.jpg', '/pf-blog-1.png', '/pf-blog-2.png'],
     details: {
       text: '個人ブログを作成しました。WordPressを使用してブログを作成し、HTML/CSSでデザインを行いました。ブログの記事は、日々の学習や開発の記録を残しています。サイトの見た目を整えることが好きだと思い始めました。WEBサイト制作にも挑戦してみたいです。',
       languages: 'WordPress, HTML/CSS, JavaScript, PHP',
       websiteLink: 'https://okapoohblog.com/',
-      siteTitle: 'DAICHIBLOG'
-    }
+      siteTitle: 'DAICHIBLOG',
+    },
   },
   {
     id: 4,
     title: 'グラウンド予約システム',
-    description: 'グラウンド予約システムの詳細説明です...',
+    description: '人工芝グラウンドの予約システム',
     image: '/pf-ground.png',
     images: ['/pf-ground-reserve.png', '/pf-ground-reserve2.png', '/pf-ground-reserve3.png'],
     details: {
       text: '新しくできる人工芝のサッカーグランドの予約システムを開発しました。Ruby on Railsを使用して、予約システムを作成しました。ユーザーは、予約したい日時を選択し、予約を確定することができます。管理者は、予約の管理を行うことができます。将来的にはクレカ決済機能を追加する予定です。',
       languages: 'Ruby on Rails, Ruby, Tailwindcss, HTML/CSS, Postgresql, Git, GitHub, Docker',
       githubLink: 'https://github.com/daichi-okamoto/ground-reserve',
-      githubTitle: 'Github',
-      githubIcon: <FontAwesomeIcon icon={faGithub} />,
-    }
+    },
   },
   {
     id: 5,
     title: 'ホームページ制作',
-    description: '高森サッカークラブのホームページ制作の詳細説明です...',
+    description: '高森サッカークラブのホームページ',
     image: '/pf-takamori-sc.jpg',
     images: ['/pf-takamori.jpg', '/pf-takamori2.jpg', '/pf-takamori3.jpg'],
     details: {
       text: '高森サッカークラブのホームページを制作しました。作成期間も短く、とにかく費用がかからないように且つプロっぽいホームページにしたいとご要望があったためWordPressの無料テーマLightningを使用して、サイトの制作を行いました。チームエンブレムのデザインも行いました。無料テーマでも工夫と追加CSSで見た目よく仕上げることができたと思います。',
       languages: 'WordPress, Lightning, HTML/CSS, PHP',
       websiteLink: 'https://takamori-sc.site/',
-      siteTitle: '高森サッカークラブ'
-    }
+      siteTitle: '高森サッカークラブ',
+    },
   },
   {
     id: 6,
     title: 'ホームページ制作',
-    description: '整理収納アドバイザーのホームページ制作の詳細説明です...',
+    description: '整理収納アドバイザーのホームページ',
     image: '/studio4.png',
     images: ['/studio1.jpg', '/studio2.jpg', '/studio3.jpg'],
     details: {
       text: '整理収納アドバイザーのホームページを制作しました。Studioを使用して、サイトの制作を行いました。ノーコードでWebサイトを作成できるため、費用を抑えることができます。愛知県岡崎市に住んでいる方はぜひご利用ください。Studioでもホームページを作成できますので費用を抑えてホームページを作成したい方もぜひご利用ください。',
       languages: 'Studio',
       websiteLink: 'https://kataduke-aya.studio.site/',
-      siteTitle: '片付けあーやー'
-    }
+      siteTitle: '片付けあーやー',
+    },
   },
   {
     id: 7,
     title: 'LP制作',
-    description: '空き家を賃貸にするサービスのLPを制作しました...',
+    description: '空き家を賃貸にするサービスのLP',
     image: '/onomichi-lp.png',
     images: ['/onomichi-lp1.jpg', '/onomichi-lp2.jpg', '/onomichi-lp3.jpg'],
     details: {
@@ -97,14 +89,12 @@ export const projects = [
       websiteLink: 'https://www.lp.okomarigotokaiketsu.site/',
       siteTitle: '空き家を賃貸にするサービス',
       githubLink: 'https://github.com/daichi-okamoto/onomichi_lp',
-      githubTitle: 'Github',
-      githubIcon: <FontAwesomeIcon icon={faGithub} />,
-    }
+    },
   },
   {
     id: 8,
     title: 'ホームページ制作',
-    description: 'アザリー飯田のホームページを制作しました...',
+    description: 'アザリー飯田の公式ホームページ',
     image: '/azaleeiida1.png',
     images: ['/azaleeiida.jpg', '/azaleeiida2.jpg', '/azaleeiida3.jpg'],
     details: {
@@ -113,9 +103,7 @@ export const projects = [
       websiteLink: 'https://www.azaleeiida.com/',
       siteTitle: 'アザリー飯田',
       githubLink: 'https://github.com/daichi-okamoto/azalee_theme',
-      githubTitle: 'Github',
-      githubIcon: <FontAwesomeIcon icon={faGithub} />,
-    }
+    },
   },
 ];
 

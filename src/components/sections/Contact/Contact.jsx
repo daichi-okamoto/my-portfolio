@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Element } from 'react-scroll';
 import ContactForm from './ContactForm';
