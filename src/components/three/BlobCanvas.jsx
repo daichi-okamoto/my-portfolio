@@ -7,8 +7,8 @@ import { scrollState } from './scrollProgress';
 
 // ---- パラメトリックなチューブ形状を生成するユーティリティ ----
 // 同じ (U×V) グリッドで複数の形を作る → 頂点数が一致しモーフできる
-const U = 920; // パスに沿った分割（さらに高密度）
-const V = 64; // チューブ断面の分割（さらに高密度）
+const U = 680; // パスに沿った分割（=糸の滑らかさ・長さ方向の解像度）
+const V = 230; // チューブ断面の分割（=縦糸の本数。多いほど密集して絹のように見える）
 
 // 連続的な擬似ノイズ（ライブラリ不要・正弦波の重ね合わせ）→ 有機的な不規則さに使う
 function snoise(x, y, z) {
@@ -73,15 +73,13 @@ function buildTubePositions(pathFn, tubeR, seed = 0) {
   return pos;
 }
 
-function buildIndex() {
+// 経路方向（U）に走る「縦糸」をラインとして繋ぐインデックス。
+// 断面方向の糸(V本)それぞれが、形に沿って流れる細い曲線になる → 密集して絹のような質感に。
+function buildLineIndex() {
   const idx = [];
-  for (let i = 0; i < U - 1; i++) {
-    for (let j = 0; j < V; j++) {
-      const a = i * V + j;
-      const b = i * V + ((j + 1) % V);
-      const cc = (i + 1) * V + j;
-      const d = (i + 1) * V + ((j + 1) % V);
-      idx.push(a, b, d, a, d, cc);
+  for (let j = 0; j < V; j++) {
+    for (let i = 0; i < U - 1; i++) {
+      idx.push(i * V + j, (i + 1) * V + j);
     }
   }
   return idx;
@@ -175,7 +173,7 @@ function MorphObject() {
     const base = buildTubePositions(SHAPES[0].path, SHAPES[0].tube, 0);
     geo.setAttribute('position', new THREE.BufferAttribute(base, 3));
     geo.setAttribute('color', new THREE.BufferAttribute(buildColors(), 3));
-    geo.setIndex(buildIndex());
+    geo.setIndex(buildLineIndex());
     geo.morphAttributes.position = SHAPES.slice(1).map(
       (s, i) =>
         new THREE.BufferAttribute(
@@ -248,19 +246,18 @@ function MorphObject() {
   });
 
   return (
-    <mesh
+    <lineSegments
       ref={mesh}
       geometry={geometry}
       morphTargetInfluences={[0, 0, 0]}
     >
-      <meshBasicMaterial
-        wireframe
+      <lineBasicMaterial
         transparent
-        opacity={0.16}
+        opacity={0.24}
         vertexColors
         depthWrite={false}
       />
-    </mesh>
+    </lineSegments>
   );
 }
 
