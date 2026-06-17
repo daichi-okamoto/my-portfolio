@@ -144,7 +144,7 @@ export default function HeroWorks({ projects }) {
         {/* カードトラック（ヒーロー中は非表示→works開始で右からスライドイン） */}
         <motion.div
           style={{ opacity: cardsOpacity }}
-          className="absolute inset-0 z-20 flex items-end pb-[11vh] pointer-events-none"
+          className="absolute inset-0 z-20 flex items-end pb-[7vh] md:pb-[11vh] pointer-events-none"
         >
           <motion.div
             ref={trackRef}
@@ -178,11 +178,11 @@ export default function HeroWorks({ projects }) {
               PORTFOLIO
             </h2>
 
-            <p className="mt-5 text-black/55 text-xs leading-loose tracking-[0.15em] max-w-[18rem]">
+            <p className="hidden sm:block mt-5 text-black/55 text-xs leading-loose tracking-[0.15em] max-w-[18rem]">
               これまでに手がけた制作・開発の実績です。
             </p>
 
-            <div className="mt-6 flex items-center gap-3 text-side text-[10px] tracking-[0.35em]">
+            <div className="mt-4 sm:mt-6 flex items-center gap-3 text-side text-[10px] tracking-[0.35em]">
               <span className="text-accent">01</span>
               <span className="block w-10 h-px bg-line" />
               <span>{String(projects.length).padStart(2, '0')}</span>
