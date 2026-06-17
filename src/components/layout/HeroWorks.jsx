@@ -146,7 +146,9 @@ export default function HeroWorks({ projects }) {
           <motion.div
             ref={trackRef}
             style={{ x }}
-            className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
+            // 1枚目が左上の見出し(WORKS/PORTFOLIO/VIEW ALL)と重ならないよう、
+            // sm以上では見出しの幅ぶん左に余白を確保してトラックを開始する。
+            className="flex items-end gap-8 lg:gap-12 pl-8 sm:pl-[26rem] md:pl-[28rem] lg:pl-[34rem] pr-[8vw] pointer-events-auto"
           >
             {projects.map((project, i) => (
               <ProjectCardH key={project.id} project={project} index={i} />
