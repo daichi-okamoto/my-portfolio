@@ -141,14 +141,12 @@ export default function HeroWorks({ projects }) {
         {/* カードトラック（ヒーロー中は非表示→works開始で右からスライドイン） */}
         <motion.div
           style={{ opacity: cardsOpacity }}
-          className="absolute inset-0 z-20 flex items-end pb-[3vh] md:pb-[11vh] pointer-events-none"
+          className="absolute inset-0 z-20 flex items-end pb-[3vh] md:pb-[5vh] pointer-events-none"
         >
           <motion.div
             ref={trackRef}
             style={{ x }}
-            // 1枚目が左上の見出し(WORKS/PORTFOLIO/VIEW ALL)と重ならないよう、
-            // sm以上では見出しの幅ぶん左に余白を確保してトラックを開始する。
-            className="flex items-end gap-8 lg:gap-12 pl-8 sm:pl-[26rem] md:pl-[28rem] lg:pl-[34rem] pr-[8vw] pointer-events-auto"
+            className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
           >
             {projects.map((project, i) => (
               <ProjectCardH key={project.id} project={project} index={i} />
@@ -159,7 +157,7 @@ export default function HeroWorks({ projects }) {
         {/* 左上に固定された見出し（フェードイン） */}
         <motion.div
           style={{ opacity: worksOpacity }}
-          className="absolute top-28 md:top-32 left-8 md:left-16 lg:left-24 z-30 w-[80vw] sm:w-[22rem] lg:w-[26rem]"
+          className="absolute top-20 md:top-24 left-8 md:left-16 lg:left-24 z-30 w-[80vw] sm:w-[22rem] lg:w-[26rem]"
         >
             <div className="flex items-center gap-4 mb-4">
               <span className="block w-12 h-px bg-accent" />
@@ -175,12 +173,6 @@ export default function HeroWorks({ projects }) {
             <p className="hidden sm:block mt-5 text-black/55 text-xs leading-loose tracking-[0.15em] max-w-[18rem]">
               これまでに手がけた制作・開発の実績です。
             </p>
-
-            <div className="hidden sm:flex mt-6 items-center gap-3 text-side text-[10px] tracking-[0.35em]">
-              <span className="text-accent">01</span>
-              <span className="block w-10 h-px bg-line" />
-              <span>{String(projects.length).padStart(2, '0')}</span>
-            </div>
 
             <Link
               href="/works"
