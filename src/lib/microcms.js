@@ -1,6 +1,7 @@
 import { createClient } from 'microcms-js-sdk';
 import { projects as fallbackProjects } from '@/data/projects';
 import { posts as fallbackPosts } from '@/data/posts';
+import { about as fallbackAbout } from '@/data/about';
 
 const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
 const apiKey = process.env.MICROCMS_API_KEY;
@@ -120,5 +121,48 @@ export async function getPost(id) {
   } catch (e) {
     console.error('[microCMS] ブログ単一取得に失敗:', e?.message);
     return fallbackPosts.find((p) => String(p.id) === String(id)) || null;
+  }
+}
+
+// ===== About（プロフィール / オブジェクト形式API）=====
+
+// microCMSのaboutオブジェクトを、未設定フィールドはfallbackで補完して返す
+function toAbout(item) {
+  return {
+    nameJa: item.nameJa || fallbackAbout.nameJa,
+    nameEn: item.nameEn || fallbackAbout.nameEn,
+    role: item.role || fallbackAbout.role,
+    based: item.based || fallbackAbout.based,
+    born: item.born || fallbackAbout.born,
+    githubUrl: item.githubUrl || fallbackAbout.githubUrl,
+    xUrl: item.xUrl || fallbackAbout.xUrl,
+    bio: item.bio || fallbackAbout.bio,
+  };
+}
+
+/**
+ * プロフィール(About)を取得。
+ * - 単一コンテンツを管理する microCMS の「オブジェクト形式」API(endpoint: about)を利用。
+ * - 未接続/失敗時はローカルのfallbackを返すので、CMS未設定でもページは表示される。
+ */
+export async function getAbout() {
+  if (!client) return fallbackAbout;
+  try {
+    // リスト形式・オブジェクト形式どちらのAPIでも取得できるよう両対応。
+    let item;
+    try {
+      const data = await client.getList({
+        endpoint: 'about',
+        queries: { limit: 1, orders: '-publishedAt' },
+      });
+      item = data?.contents?.[0];
+    } catch {
+      item = await client.getObject({ endpoint: 'about' });
+    }
+    if (!item) return fallbackAbout;
+    return toAbout(item);
+  } catch (e) {
+    console.error('[microCMS] About取得に失敗したためローカルデータを使用:', e?.message);
+    return fallbackAbout;
   }
 }

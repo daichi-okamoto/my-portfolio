@@ -97,6 +97,33 @@ code {
   margin: 1.5rem 0;
 }
 
+/* About本文（microCMSリッチエディタHTML：段落＋テキスト内リンク） */
+.about-bio {
+  color: rgb(var(--color-ink) / 0.75);
+  font-size: 0.9rem;
+  line-height: 2;
+  letter-spacing: 0.02em;
+}
+.about-bio p {
+  margin-bottom: 1.4rem;
+}
+.about-bio p:last-child {
+  margin-bottom: 0;
+}
+.about-bio a {
+  color: rgb(var(--color-accent));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.3s;
+}
+.about-bio a:hover {
+  opacity: 0.7;
+}
+.about-bio strong {
+  font-weight: 700;
+  color: rgb(var(--color-ink));
+}
+
 /* スクロールヒントのバウンス */
 @keyframes scroll-hint {
   0%, 100% { transform: translateY(0); opacity: 0.4; }

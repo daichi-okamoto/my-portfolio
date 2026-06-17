@@ -25,14 +25,14 @@ const STAGES = [
   },
   {
     label: 'PHILOSOPHY',
-    title: 'つくって、ためして、\nもっとよくする。',
-    sub: '現場の課題から、仕組みを設計する。',
+    title: '面倒を、仕組みに変える。',
+    sub: 'つくって、ためして、もっとよくする。',
     serifTitle: false,
   },
   {
     label: 'WHAT I DO',
-    title: 'Web開発と、\nものづくりのあいだ。',
-    sub: 'アプリ開発・Web制作・業務効率化／DX支援。',
+    title: 'Web・自動化・AIで、\n現場の課題を解く。',
+    sub: 'アプリ開発・Web制作・業務効率化／DX。',
     serifTitle: false,
   },
 ];
