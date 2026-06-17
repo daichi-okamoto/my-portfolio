@@ -6,14 +6,12 @@ import Link from 'next/link';
 import { Element } from 'react-scroll';
 import {
   motion,
-  AnimatePresence,
   useScroll,
   useTransform,
   useMotionValueEvent,
 } from 'framer-motion';
 import { scrollState } from '../three/scrollProgress';
 import ProjectCardH from '../sections/Portfolio/ProjectCardH';
-import ProjectModal from '../sections/Portfolio/ProjectModal';
 
 const BlobCanvas = dynamic(() => import('../three/BlobCanvas'), { ssr: false });
 
@@ -42,7 +40,6 @@ const STAGES = [
 export default function HeroWorks({ projects }) {
   const ref = useRef(null);
   const trackRef = useRef(null);
-  const [selected, setSelected] = useState(null);
   const [m, setM] = useState({ vw: 0, vh: 0, trackW: 0 });
 
   useEffect(() => {
@@ -152,12 +149,7 @@ export default function HeroWorks({ projects }) {
             className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
           >
             {projects.map((project, i) => (
-              <ProjectCardH
-                key={project.id}
-                project={project}
-                index={i}
-                onOpen={setSelected}
-              />
+              <ProjectCardH key={project.id} project={project} index={i} />
             ))}
           </motion.div>
         </motion.div>
@@ -212,12 +204,6 @@ export default function HeroWorks({ projects }) {
           <span className="block w-px h-10 bg-black/30 animate-scroll-hint" />
         </motion.div>
       </div>
-
-      <AnimatePresence>
-        {selected && (
-          <ProjectModal project={selected} onClose={() => setSelected(null)} />
-        )}
-      </AnimatePresence>
     </section>
   );
 }
