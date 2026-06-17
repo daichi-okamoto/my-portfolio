@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './layout/Header';
 import HeroWorks from './layout/HeroWorks';
+import CTA from './sections/CTA';
 import Footer from './layout/Footer';
 
 const containerVariants = {
@@ -31,6 +32,7 @@ const MainContent = ({ projects }) => {
       <motion.div variants={itemVariants} className="relative z-10">
         <Header />
         <HeroWorks projects={projects} />
+        <CTA />
         <Footer />
       </motion.div>
     </motion.div>
