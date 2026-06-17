@@ -40,7 +40,7 @@ const frag = /* glsl */ `
     vec2 am = vec2(uMouse.x * uAspect, uMouse.y);
     vec2 toM = auv - am;
     float d = length(toM);
-    float infl = exp(-d * d * 22.0); // カーソル周辺の影響（ガウシアン）。係数が大きいほど狭く＝カーソル付近のみ波打つ
+    float infl = exp(-d * d * 35.0); // カーソル周辺の影響（ガウシアン）。係数が大きいほど狭く＝カーソル付近のみ波打つ
 
     // ゆっくり流れるドメインワープ
     vec2 q = vec2(
@@ -48,7 +48,7 @@ const frag = /* glsl */ `
       fbm(uv * 3.0 + vec2(5.2, 1.3) - uTime * 0.04)
     );
     // カーソルが場を押して“グニュッ”と歪ませる
-    vec2 warp = uv * 3.0 + q * 0.7 - toM * infl * 2.0;
+    vec2 warp = uv * 3.0 + q * 0.7 - toM * infl * 3.0;
     float n = fbm(warp + uTime * 0.03);
 
     vec3 cream = vec3(0.925, 0.894, 0.839); // ベース(生成り)
