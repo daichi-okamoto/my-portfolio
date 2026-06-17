@@ -1,10 +1,10 @@
 import SiteShell from '@/components/SiteShell';
-import { getProjects } from '@/lib/microcms';
+import { getProjects, getPosts } from '@/lib/microcms';
 
 // microCMSの更新を反映するため、定期的に再生成（ISR）
 export const revalidate = 60;
 
 export default async function Home() {
-  const projects = await getProjects();
-  return <SiteShell projects={projects} />;
+  const [projects, posts] = await Promise.all([getProjects(), getPosts()]);
+  return <SiteShell projects={projects} posts={posts} />;
 }

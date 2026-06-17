@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './layout/Header';
 import HeroWorks from './layout/HeroWorks';
+import BlogSection from './sections/BlogSection';
 import CTA from './sections/CTA';
 import Footer from './layout/Footer';
 
@@ -21,7 +22,7 @@ const itemVariants = {
   visible: { opacity: 1, transition: { duration: 1.4 } },
 };
 
-const MainContent = ({ projects }) => {
+const MainContent = ({ projects, posts }) => {
   return (
     <motion.div
       variants={containerVariants}
@@ -32,6 +33,7 @@ const MainContent = ({ projects }) => {
       <motion.div variants={itemVariants} className="relative z-10">
         <Header />
         <HeroWorks projects={projects} />
+        <BlogSection posts={(posts || []).slice(0, 3)} />
         <CTA />
         <Footer />
       </motion.div>

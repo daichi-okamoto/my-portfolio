@@ -1,5 +1,6 @@
 import { createClient } from 'microcms-js-sdk';
 import { projects as fallbackProjects } from '@/data/projects';
+import { posts as fallbackPosts } from '@/data/posts';
 
 const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
 const apiKey = process.env.MICROCMS_API_KEY;
@@ -68,5 +69,56 @@ export async function getProject(id) {
   } catch (e) {
     console.error('[microCMS] 単一取得に失敗:', e?.message);
     return fallbackProjects.find((p) => String(p.id) === String(id)) || null;
+  }
+}
+
+// ===== ブログ =====
+
+const stripHtml = (html) => (html || '').replace(/<[^>]*>/g, '').trim();
+
+// microCMSの1件を、アプリ内で使う post 形へ変換
+function toPost(item) {
+  const content = item.content ?? item.body ?? '';
+  return {
+    id: item.id,
+    title: item.title ?? '',
+    date: item.date || item.publishedAt || item.createdAt || '',
+    excerpt: item.excerpt || stripHtml(content).slice(0, 90),
+    thumbnail: item.thumbnail?.url || item.eyecatch?.url || '',
+    content,
+  };
+}
+
+/**
+ * ブログ一覧を取得。未接続/失敗時はローカルのサンプル記事を返す。
+ */
+export async function getPosts() {
+  if (!client) return fallbackPosts;
+  try {
+    const data = await client.getList({
+      endpoint: 'blog',
+      queries: { limit: 100, orders: '-publishedAt' },
+    });
+    if (!data?.contents?.length) return fallbackPosts;
+    return data.contents.map(toPost);
+  } catch (e) {
+    console.error('[microCMS] ブログ取得に失敗したためローカルデータを使用:', e?.message);
+    return fallbackPosts;
+  }
+}
+
+/**
+ * ブログを1件取得。未接続/失敗時はローカルfallbackからid一致を返す。
+ */
+export async function getPost(id) {
+  if (!client) {
+    return fallbackPosts.find((p) => String(p.id) === String(id)) || null;
+  }
+  try {
+    const item = await client.getListDetail({ endpoint: 'blog', contentId: id });
+    return toPost(item);
+  } catch (e) {
+    console.error('[microCMS] ブログ単一取得に失敗:', e?.message);
+    return fallbackPosts.find((p) => String(p.id) === String(id)) || null;
   }
 }

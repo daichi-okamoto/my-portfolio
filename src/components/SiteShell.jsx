@@ -7,14 +7,14 @@ import MainContent from './MainContent';
 import CustomCursor from './CustomCursor';
 import WaveBackground from './WaveBackground';
 
-function SiteShell({ projects }) {
+function SiteShell({ projects, posts }) {
   const [loading, setLoading] = useState(true);
 
   return (
     <>
       <WaveBackground />
       <CustomCursor />
-      <MainContent projects={projects} />
+      <MainContent projects={projects} posts={posts} />
       <AnimatePresence>
         {loading && <Intro key="intro" onFinish={() => setLoading(false)} />}
       </AnimatePresence>
