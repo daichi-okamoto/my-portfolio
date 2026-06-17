@@ -1,6 +1,10 @@
 import './globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+// FontAwesomeのコアCSS（アイコンを1emに収める）。これが無いとSVGが原寸で巨大化する
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false;
 import Script from 'next/script';
 
 export const metadata = {
