@@ -170,10 +170,6 @@ export default function HeroWorks({ projects }) {
               PORTFOLIO
             </h2>
 
-            <p className="hidden sm:block mt-5 text-black/55 text-xs leading-loose tracking-[0.15em] max-w-[18rem]">
-              これまでに手がけた制作・開発の実績です。
-            </p>
-
             <Link
               href="/works"
               className="pointer-events-auto group mt-7 inline-flex items-center gap-3 text-black text-xs tracking-[0.25em] font-bold"
