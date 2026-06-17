@@ -10,14 +10,11 @@ import Script from 'next/script';
 export const metadata = {
   title: 'DAICHI OKAMOTO',
   description: 'WEBエンジニア、岡本能知（ダイチ）のポートフォリオサイトです。',
-  icons: {
-    icon: '/pf-favicon.png',
-    apple: '/apple-touch-icon.png',
-  },
+  // favicon は app/icon.png・app/apple-icon.png（file convention）で自動設定
 };
 
 export const viewport = {
-  themeColor: '#000000',
+  themeColor: '#ECE4D6',
 };
 
 export default function RootLayout({ children }) {
