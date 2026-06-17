@@ -96,7 +96,7 @@ export async function getPosts() {
   if (!client) return fallbackPosts;
   try {
     const data = await client.getList({
-      endpoint: 'blog',
+      endpoint: 'blogs',
       queries: { limit: 100, orders: '-publishedAt' },
     });
     if (!data?.contents?.length) return fallbackPosts;
@@ -115,7 +115,7 @@ export async function getPost(id) {
     return fallbackPosts.find((p) => String(p.id) === String(id)) || null;
   }
   try {
-    const item = await client.getListDetail({ endpoint: 'blog', contentId: id });
+    const item = await client.getListDetail({ endpoint: 'blogs', contentId: id });
     return toPost(item);
   } catch (e) {
     console.error('[microCMS] ブログ単一取得に失敗:', e?.message);
