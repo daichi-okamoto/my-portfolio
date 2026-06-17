@@ -8,6 +8,8 @@ import WaveBackground from '@/components/WaveBackground';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { getAbout } from '@/lib/microcms';
 
+export const revalidate = 60;
+
 export const metadata = {
   title: 'ABOUT | DAICHI OKAMOTO',
   description: 'WEBエンジニア 岡本能知（ダイチ）のプロフィール。',

@@ -132,7 +132,8 @@ function toAbout(item) {
     nameJa: item.nameJa || fallbackAbout.nameJa,
     nameEn: item.nameEn || fallbackAbout.nameEn,
     role: item.role || fallbackAbout.role,
-    based: item.based || fallbackAbout.based,
+    // 出身は現行スキーマのfieldIdが bron（based のtypo）。両方を許容。
+    based: item.based || item.bron || fallbackAbout.based,
     born: item.born || fallbackAbout.born,
     githubUrl: item.githubUrl || fallbackAbout.githubUrl,
     xUrl: item.xUrl || fallbackAbout.xUrl,
