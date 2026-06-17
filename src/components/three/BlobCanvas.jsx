@@ -228,7 +228,11 @@ function MorphObject() {
     mesh.current.rotation.z = Math.sin(t * 0.13) * 0.12;
 
     // 画面幅に応じたサイズ（レスポンシブ）＋微かな呼吸
-    mesh.current.scale.setScalar(responsiveScale * (1 + Math.sin(t * 0.4) * 0.015));
+    // スクロール終盤(0.82→0.98)で縮小して消えていく
+    const shrink = 1 - THREE.MathUtils.smoothstep(sBase, 0.82, 0.98);
+    mesh.current.scale.setScalar(
+      responsiveScale * (1 + Math.sin(t * 0.4) * 0.015) * shrink
+    );
 
     // 右側に配置 ＋ ゆるい浮遊 ＋ マウス追従
     mesh.current.position.x = THREE.MathUtils.lerp(

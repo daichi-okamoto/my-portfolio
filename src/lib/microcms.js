@@ -54,3 +54,19 @@ export async function getProjects() {
     return fallbackProjects;
   }
 }
+
+/**
+ * 実績を1件取得。未接続/失敗時はローカルfallbackからid一致を返す。
+ */
+export async function getProject(id) {
+  if (!client) {
+    return fallbackProjects.find((p) => String(p.id) === String(id)) || null;
+  }
+  try {
+    const item = await client.getListDetail({ endpoint: 'works', contentId: id });
+    return toProject(item);
+  } catch (e) {
+    console.error('[microCMS] 単一取得に失敗:', e?.message);
+    return fallbackProjects.find((p) => String(p.id) === String(id)) || null;
+  }
+}

@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Element } from 'react-scroll';
 import {
   motion,
@@ -88,11 +89,19 @@ export default function HeroWorks({ projects }) {
   );
   const hintOpacity = useTransform(scrollYProgress, [0, P1 * 0.12], [1, 0]);
 
-  // 実績トラック：画面外(右)から左へ流入。画面端まで表示(クリップは画面端のみ)。
-  const x = useTransform(scrollYProgress, [P1, 1], [vw, -(trackW - vw)]);
+  // 実績トラック：画面外(右)から左へスライドイン → そのまま右→左に流れる。
+  // 開始は完全に画面外右、works開始直後に素早く右端から入ってくる。
+  const x = useTransform(
+    scrollYProgress,
+    [P1, P1 + (1 - P1) * 0.13, 1],
+    [vw * 0.95, vw * 0.02, -(trackW - vw)]
+  );
+  // カードはヒーロー中は非表示（見切れ防止）→ works開始でゲート的に表示。フェードではなくスライドで魅せる
+  const cardsOpacity = useTransform(scrollYProgress, [P1 * 0.99, P1], [0, 1]);
+  // タイトルのみフェードイン
   const worksOpacity = useTransform(
     scrollYProgress,
-    [P1 * 0.96, P1 + (1 - P1) * 0.04],
+    [P1 * 0.96, P1 + (1 - P1) * 0.05],
     [0, 1]
   );
 
@@ -131,31 +140,33 @@ export default function HeroWorks({ projects }) {
           ))}
         </div>
 
-        {/* 実績フェーズ：タイトルは左上に固定／カードは全幅で右→左に流れる（画面端でのみ見切れる） */}
+        {/* 実績フェーズ：カードは画面外右からスライドイン（フェードなし）／タイトルは左上にフェードイン */}
+        {/* カードトラック（ヒーロー中は非表示→works開始で右からスライドイン） */}
+        <motion.div
+          style={{ opacity: cardsOpacity }}
+          className="absolute inset-0 z-20 flex items-end pb-[11vh] pointer-events-none"
+        >
+          <motion.div
+            ref={trackRef}
+            style={{ x }}
+            className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
+          >
+            {projects.map((project, i) => (
+              <ProjectCardH
+                key={project.id}
+                project={project}
+                index={i}
+                onOpen={setSelected}
+              />
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* 左上に固定された見出し（フェードイン） */}
         <motion.div
           style={{ opacity: worksOpacity }}
-          className="absolute inset-0 z-20 pointer-events-none"
+          className="absolute top-28 md:top-32 left-8 md:left-16 lg:left-24 z-30 w-[80vw] sm:w-[22rem] lg:w-[26rem]"
         >
-          {/* カードトラック（全幅・やや下寄せ。クリップは親のoverflow-hidden=画面端のみ） */}
-          <div className="absolute inset-0 flex items-end pb-[11vh]">
-            <motion.div
-              ref={trackRef}
-              style={{ x }}
-              className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
-            >
-              {projects.map((project, i) => (
-                <ProjectCardH
-                  key={project.id}
-                  project={project}
-                  index={i}
-                  onOpen={setSelected}
-                />
-              ))}
-            </motion.div>
-          </div>
-
-          {/* 左上に固定された見出し */}
-          <div className="absolute top-28 md:top-32 left-8 md:left-16 lg:left-24 z-30 w-[80vw] sm:w-[22rem] lg:w-[26rem]">
             <div className="flex items-center gap-4 mb-4">
               <span className="block w-12 h-px bg-accent" />
               <p className="font-serif text-accent text-[10px] md:text-xs tracking-[0.5em]">
@@ -176,7 +187,18 @@ export default function HeroWorks({ projects }) {
               <span className="block w-10 h-px bg-line" />
               <span>{String(projects.length).padStart(2, '0')}</span>
             </div>
-          </div>
+
+            <Link
+              href="/works"
+              className="pointer-events-auto group mt-7 inline-flex items-center gap-3 text-black text-xs tracking-[0.25em] font-bold"
+            >
+              <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
+                VIEW ALL
+              </span>
+              <span className="text-accent transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
         </motion.div>
 
         {/* スクロールヒント */}

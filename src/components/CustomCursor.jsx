@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { scrollState } from './three/scrollProgress';
 
@@ -13,6 +14,8 @@ const RING = {
 };
 
 export default function CustomCursor() {
+  const pathname = usePathname();
+  const isHome = pathname === '/'; // SCROLLリングはトップのヒーローのみ
   const [enabled, setEnabled] = useState(false);
   const [variant, setVariant] = useState('default');
   const variantRef = useRef('default');
@@ -46,7 +49,7 @@ export default function CustomCursor() {
     };
 
     const resolveNonHover = () =>
-      scrollState.hero < 0.95 ? 'scroll' : 'default';
+      isHome && scrollState.hero < 0.95 ? 'scroll' : 'default';
 
     const updateProgress = () =>
       progress.set(Math.min(Math.max(scrollState.hero, 0), 1));
@@ -84,7 +87,7 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', leave);
       document.body.classList.remove('cursor-none');
     };
-  }, [x, y]);
+  }, [x, y, progress, isHome]);
 
   if (!enabled) return null;
 
