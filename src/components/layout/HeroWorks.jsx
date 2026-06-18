@@ -73,15 +73,17 @@ export default function HeroWorks({ projects, posts }) {
     offset: ['start start', 'end end'],
   });
 
-  // Hero区間の進捗(0..1)を3Dへ共有
+  // Hero区間／works区間の進捗(0..1)を3Dへ共有
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     scrollState.hero = P1 > 0 ? Math.min(v / P1, 1) : 0;
+    scrollState.works =
+      P1 < 1 ? Math.min(Math.max((v - P1) / (1 - P1), 0), 1) : 0;
   });
 
-  // Hero終盤で3Dとヒントをフェードアウト
+  // works開始（カードのスライドイン）と同時に3Dをフェードアウト
   const objectOpacity = useTransform(
     scrollYProgress,
-    [P1 * 0.78, P1 * 0.96],
+    [P1, P1 + (1 - P1) * 0.16],
     [1, 0]
   );
   const hintOpacity = useTransform(scrollYProgress, [0, P1 * 0.12], [1, 0]);
