@@ -178,9 +178,10 @@ function NetworkObject() {
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
-  // 画面幅が広いほど大きく（レスポンシブ）／右側に配置
+  // 画面幅が広いほど大きく（レスポンシブ）
   const responsiveScale = THREE.MathUtils.clamp(size.width / 1300, 0.85, 1.55);
-  const xOffset = viewport.width * 0.2;
+  // PCは右寄せ、SP(〜640px)は左右中央
+  const xOffset = size.width < 640 ? 0 : viewport.width * 0.2;
 
   // ノード位置・色・エッジを生成（線と点で同じバッファを共有）
   const { base, layouts, posAttr, colorAttr, edgeIndex } = useMemo(() => {
