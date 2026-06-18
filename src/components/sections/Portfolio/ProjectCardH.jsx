@@ -10,18 +10,18 @@ const ProjectCardH = ({ project, index }) => {
     <Link
       href={`/works/${project.id}`}
       data-cursor="view"
-      className="group shrink-0 w-[88vw] sm:w-[34rem] lg:w-[44rem] flex items-center gap-6 lg:gap-10"
+      className="group shrink-0 w-[78vw] sm:w-[34rem] lg:w-[44rem] flex flex-col sm:flex-row sm:items-center sm:gap-6 lg:gap-10"
     >
-      <div className="w-1/2 shrink-0 overflow-hidden rounded-sm">
+      <div className="w-full sm:w-1/2 shrink-0 overflow-hidden rounded-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-[24vh] md:h-[32vh] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className="w-full h-auto sm:h-[24vh] md:h-[32vh] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
       </div>
 
-      <div className="w-1/2">
+      <div className="w-full sm:w-1/2">
         <div className="flex items-center gap-3 mb-3">
           <span className="font-serif text-accent text-xs tracking-[0.3em]">
             {String(index + 1).padStart(2, '0')}
@@ -32,9 +32,11 @@ const ProjectCardH = ({ project, index }) => {
           {project.title}
         </h3>
         {project.description && (
-          <p className="text-side text-xs leading-relaxed mb-5 line-clamp-3">
-            {project.description}
-          </p>
+          <div className="hidden sm:block mb-5">
+            <p className="text-side text-xs leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+          </div>
         )}
         <span className="inline-flex items-center gap-3 text-black text-xs tracking-[0.25em] font-bold">
           <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
