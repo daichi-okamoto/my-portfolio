@@ -35,7 +35,7 @@ export default async function WorksPage() {
             <h1 className="font-serif text-5xl md:text-7xl font-bold text-black tracking-tight">
               PORTFOLIO
             </h1>
-            <p className="text-side text-xs md:text-sm tracking-[0.2em] pb-1">
+            <p className="hidden sm:block text-side text-xs md:text-sm tracking-[0.2em] pb-1">
               全 {projects.length} 件
             </p>
           </div>
