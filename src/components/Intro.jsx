@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// 導入で見せる実績画像のモンタージュ
-const IMAGES = [
+// CMS未接続などで画像が無いときのフォールバック
+const FALLBACK_IMAGES = [
   '/pf-cs-top.jpg',
   '/pf-pf.png',
   '/azaleeiida.jpg',
@@ -13,30 +13,47 @@ const IMAGES = [
   '/studio1.jpg',
 ];
 
-const PER_MS = 460; // 1枚あたりの表示時間
+const MAX_IMAGES = 12; // 多すぎる場合の上限
+const GAP_MAX = 1300; // 最初の1枚の表示時間（かなりゆっくり）
+const GAP_MIN = 150; // 終盤の表示時間（ぽんぽん）
+const GAP_EXP = 2.2; // 加速の効き具合（大きいほど後半で一気に速くなる）
 
-export default function Intro({ onFinish }) {
+// i番目の画像の表示時間。後半ほど短くなる＝加速。
+function gapAt(i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  return GAP_MIN + (GAP_MAX - GAP_MIN) * Math.pow(1 - t, GAP_EXP);
+}
+
+export default function Intro({ onFinish, projects }) {
   const [phase, setPhase] = useState('montage'); // 'montage' -> 'title'
   const [idx, setIdx] = useState(0);
 
+  // ポートフォリオ（works）の画像を使う。無ければフォールバック。
+  const images = useMemo(() => {
+    const fromCms = (projects ?? []).map((p) => p?.image).filter(Boolean);
+    const unique = Array.from(new Set(fromCms));
+    const list = unique.length ? unique : FALLBACK_IMAGES;
+    return list.slice(0, MAX_IMAGES);
+  }, [projects]);
+
   // 画像を先読みしてチラつきを防ぐ
   useEffect(() => {
-    IMAGES.forEach((src) => {
+    images.forEach((src) => {
       const img = new window.Image();
       img.src = src;
     });
-  }, []);
+  }, [images]);
 
-  // モンタージュを順送り
+  // 1枚ずつ、加速しながら切り替える
   useEffect(() => {
     if (phase !== 'montage') return;
-    if (idx >= IMAGES.length) {
+    if (idx >= images.length) {
       setPhase('title');
       return;
     }
-    const t = setTimeout(() => setIdx((i) => i + 1), PER_MS);
+    const t = setTimeout(() => setIdx((i) => i + 1), gapAt(idx, images.length));
     return () => clearTimeout(t);
-  }, [idx, phase]);
+  }, [idx, phase, images.length]);
 
   // タイトル提示後に終了
   useEffect(() => {
@@ -52,34 +69,29 @@ export default function Intro({ onFinish }) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
     >
-      {/* 実績画像モンタージュ */}
-      <AnimatePresence mode="sync">
-        {phase === 'montage' && idx < IMAGES.length && (
+      {/* 実績画像を中央に1枚ずつ表示 */}
+      <AnimatePresence>
+        {phase === 'montage' && idx < images.length && (
           <motion.div
             key={idx}
             className="absolute inset-0 flex items-center justify-center"
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={IMAGES[idx]}
+            <motion.img
+              src={images[idx]}
               alt=""
-              className="w-[78%] max-w-3xl h-[58%] object-cover rounded-sm shadow-2xl"
+              className="max-h-[80vh] max-w-[74vw] w-auto h-auto object-contain"
+              // ゆっくりズームアウトでKen Burns風のドリフトを付ける
+              initial={{ scale: 1.07 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 2.6, ease: 'easeOut' }}
             />
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* カウンター */}
-      {phase === 'montage' && (
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-black/50 tracking-[0.3em] text-[10px]">
-          {String(Math.min(idx + 1, IMAGES.length)).padStart(2, '0')} /{' '}
-          {String(IMAGES.length).padStart(2, '0')}
-        </div>
-      )}
 
       {/* タイトルリビール */}
       <AnimatePresence>

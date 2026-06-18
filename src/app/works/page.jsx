@@ -41,59 +41,48 @@ export default async function WorksPage() {
           </div>
         </div>
 
-        {/* グリッド */}
-        <div className="w-[88%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+        {/* 一覧（横並びカード／カード間は広めのGAP） */}
+        <div className="w-[88%] max-w-6xl mx-auto flex flex-col gap-24 lg:gap-32">
           {projects.map((project, i) => {
-            const tags = (project.details?.languages || '')
-              .split(',')
-              .map((s) => s.trim())
-              .filter(Boolean)
-              .slice(0, 4);
             return (
               <Link
                 key={project.id}
                 href={`/works/${project.id}`}
                 data-cursor="view"
-                className="group block"
+                className="group flex flex-col md:flex-row md:items-center gap-8 lg:gap-14"
               >
-                <div className="overflow-hidden rounded-sm shadow-sm group-hover:shadow-xl transition-shadow duration-500">
+                <div className="md:w-[52%] shrink-0 overflow-hidden rounded-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-[clamp(220px,30vw,360px)] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    className="w-full h-[clamp(220px,30vw,360px)] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>
-                <div className="mt-5 flex items-start gap-4">
-                  <span className="font-serif text-accent text-sm tracking-[0.3em] mt-1 shrink-0">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h2 className="font-serif text-xl lg:text-2xl font-bold text-black tracking-wider mb-3 group-hover:text-accent transition-colors duration-300">
-                      {project.title}
-                    </h2>
-                    {tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {tags.map((t, k) => (
-                          <span
-                            key={k}
-                            className="text-[10px] tracking-wider text-side border border-line rounded-full px-3 py-1"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <span className="inline-flex items-center gap-3 text-black text-xs tracking-[0.25em] font-bold">
-                      <span className="border-b border-black/40 pb-1 group-hover:border-accent group-hover:text-accent transition-colors duration-300">
-                        VIEW PROJECT
-                      </span>
-                      <FontAwesomeIcon
-                        icon={faArrowRight}
-                        className="text-accent group-hover:translate-x-1 transition-transform duration-300"
-                      />
+                <div className="md:flex-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="font-serif text-accent text-sm tracking-[0.3em]">
+                      {String(i + 1).padStart(2, '0')}
                     </span>
+                    <span className="block w-8 h-px bg-line" />
                   </div>
+                  <h2 className="font-serif text-xl lg:text-2xl font-bold text-black tracking-wider mb-3 group-hover:text-accent transition-colors duration-300">
+                    {project.title}
+                  </h2>
+                  {project.description && (
+                    <p className="text-side text-xs md:text-sm leading-relaxed mb-5 line-clamp-3">
+                      {project.description}
+                    </p>
+                  )}
+                  <span className="inline-flex items-center gap-3 text-black text-xs tracking-[0.25em] font-bold">
+                    <span className="border-b border-black/40 pb-1 group-hover:border-accent group-hover:text-accent transition-colors duration-300">
+                      VIEW MORE
+                    </span>
+                    <FontAwesomeIcon
+                      icon={faArrowRight}
+                      className="text-accent group-hover:translate-x-1 transition-transform duration-300"
+                    />
+                  </span>
                 </div>
               </Link>
             );

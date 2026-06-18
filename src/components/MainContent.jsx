@@ -32,7 +32,7 @@ const MainContent = ({ projects, posts }) => {
     >
       <motion.div variants={itemVariants} className="relative z-10">
         <Header />
-        <HeroWorks projects={projects} />
+        <HeroWorks projects={projects} posts={posts} />
         <BlogSection posts={(posts || []).slice(0, 3)} />
         <CTA />
         <Footer />

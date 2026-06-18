@@ -16,7 +16,13 @@ function SiteShell({ projects, posts }) {
       <CustomCursor />
       <MainContent projects={projects} posts={posts} />
       <AnimatePresence>
-        {loading && <Intro key="intro" onFinish={() => setLoading(false)} />}
+        {loading && (
+          <Intro
+            key="intro"
+            projects={projects}
+            onFinish={() => setLoading(false)}
+          />
+        )}
       </AnimatePresence>
     </>
   );

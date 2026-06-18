@@ -37,7 +37,7 @@ const STAGES = [
   },
 ];
 
-export default function HeroWorks({ projects }) {
+export default function HeroWorks({ projects, posts }) {
   const ref = useRef(null);
   const trackRef = useRef(null);
   const [m, setM] = useState({ vw: 0, vh: 0, trackW: 0 });
@@ -102,6 +102,12 @@ export default function HeroWorks({ projects }) {
     [0, 1]
   );
 
+  // 右下ショートカットは同じ位置に重なるため、非表示中はクリックを無効化
+  const allPortfolioPE = useTransform(objectOpacity, (v) =>
+    v > 0.05 ? 'auto' : 'none'
+  );
+  const blogPE = useTransform(worksOpacity, (v) => (v > 0.05 ? 'auto' : 'none'));
+
   return (
     <section
       ref={ref}
@@ -141,12 +147,12 @@ export default function HeroWorks({ projects }) {
         {/* カードトラック（ヒーロー中は非表示→works開始で右からスライドイン） */}
         <motion.div
           style={{ opacity: cardsOpacity }}
-          className="absolute inset-0 z-20 flex items-end pb-[3vh] md:pb-[5vh] pointer-events-none"
+          className="absolute inset-0 z-20 flex items-center pointer-events-none"
         >
           <motion.div
             ref={trackRef}
             style={{ x }}
-            className="flex items-end gap-8 lg:gap-12 pl-8 md:pl-16 lg:pl-24 pr-[8vw] pointer-events-auto"
+            className="flex items-center gap-20 lg:gap-32 pl-8 md:pl-16 lg:pl-24 pr-[12vw] pointer-events-auto"
           >
             {projects.map((project, i) => (
               <ProjectCardH key={project.id} project={project} index={i} />
@@ -192,6 +198,66 @@ export default function HeroWorks({ projects }) {
             SCROLL
           </span>
           <span className="block w-px h-10 bg-black/30 animate-scroll-hint" />
+        </motion.div>
+
+        {/* 3Dオブジェクト表示中だけ右下に出すショートカット（3Dと同じ寿命でフェードアウト） */}
+        <motion.div
+          style={{ opacity: objectOpacity, pointerEvents: allPortfolioPE }}
+          className="absolute bottom-8 right-8 md:right-16 lg:right-20 z-30"
+        >
+          <Link
+            href="/works"
+            className="group flex flex-col items-center"
+          >
+            {projects?.[0]?.image && (
+              <div className="w-24 md:w-32 lg:w-36 overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={projects[0].image}
+                  alt={projects[0].title || ''}
+                  className="w-full aspect-square object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                />
+              </div>
+            )}
+            <span className="inline-flex items-center gap-3 text-black text-[10px] md:text-xs tracking-[0.3em] font-bold">
+              <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
+                ALL PORTFOLIO
+              </span>
+              <span className="text-accent transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </span>
+          </Link>
+        </motion.div>
+
+        {/* 実績区間で右下に出すブログへのショートカット（works開始でフェードイン） */}
+        <motion.div
+          style={{ opacity: worksOpacity, pointerEvents: blogPE }}
+          className="absolute bottom-8 right-8 md:right-16 lg:right-20 z-30"
+        >
+          <Link
+            href="/blog"
+            className="group flex flex-col items-center gap-3"
+          >
+            {posts?.[0]?.thumbnail && (
+              <div className="w-36 md:w-44 lg:w-52 overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={posts[0].thumbnail}
+                  alt={posts[0].title || ''}
+                  className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                />
+              </div>
+            )}
+            <span className="inline-flex items-center gap-3 text-black text-[10px] md:text-xs tracking-[0.3em] font-bold">
+              <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
+                BLOG
+              </span>
+              <span className="text-accent transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </span>
+          </Link>
         </motion.div>
       </div>
     </section>
