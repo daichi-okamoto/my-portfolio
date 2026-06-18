@@ -148,7 +148,7 @@ export default function HeroWorks({ projects, posts }) {
         {/* カードトラック（ヒーロー中は非表示→works開始で右からスライドイン） */}
         <motion.div
           style={{ opacity: cardsOpacity }}
-          className="absolute inset-0 z-20 flex items-center pointer-events-none"
+          className="absolute inset-0 z-20 flex items-center pt-[16vh] sm:pt-0 pointer-events-none"
         >
           <motion.div
             ref={trackRef}
@@ -211,7 +211,7 @@ export default function HeroWorks({ projects, posts }) {
             className="group flex flex-col items-center"
           >
             {projects?.[0]?.image && (
-              <div className="w-24 md:w-32 lg:w-36 overflow-hidden rounded-sm">
+              <div className="w-16 sm:w-28 lg:w-36 overflow-hidden rounded-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={projects[0].image}
@@ -220,7 +220,7 @@ export default function HeroWorks({ projects, posts }) {
                 />
               </div>
             )}
-            <span className="inline-flex items-center gap-3 text-black text-[10px] md:text-xs tracking-[0.3em] font-bold">
+            <span className="inline-flex items-center gap-2 sm:gap-3 text-black text-[8px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold">
               <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
                 ALL PORTFOLIO
               </span>
@@ -234,14 +234,14 @@ export default function HeroWorks({ projects, posts }) {
         {/* 実績区間で右下に出すブログへのショートカット（works開始でフェードイン） */}
         <motion.div
           style={{ opacity: worksOpacity, pointerEvents: blogPE }}
-          className="absolute bottom-8 right-8 md:right-16 lg:right-20 z-30"
+          className="absolute bottom-4 sm:bottom-8 right-8 md:right-16 lg:right-20 z-30"
         >
           <Link
             href="/blog"
-            className="group flex flex-col items-center gap-3"
+            className="group flex flex-col items-center gap-2 sm:gap-3"
           >
             {posts?.[0]?.thumbnail && (
-              <div className="w-36 md:w-44 lg:w-52 overflow-hidden rounded-sm">
+              <div className="w-24 sm:w-44 lg:w-52 overflow-hidden rounded-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={posts[0].thumbnail}
@@ -250,7 +250,7 @@ export default function HeroWorks({ projects, posts }) {
                 />
               </div>
             )}
-            <span className="inline-flex items-center gap-3 text-black text-[10px] md:text-xs tracking-[0.3em] font-bold">
+            <span className="inline-flex items-center gap-2 sm:gap-3 text-black text-[8px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold">
               <span className="border-b border-black/40 pb-1 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
                 BLOG
               </span>

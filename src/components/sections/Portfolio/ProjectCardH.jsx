@@ -10,7 +10,7 @@ const ProjectCardH = ({ project, index }) => {
     <Link
       href={`/works/${project.id}`}
       data-cursor="view"
-      className="group shrink-0 w-[78vw] sm:w-[34rem] lg:w-[44rem] flex flex-col sm:flex-row sm:items-center sm:gap-6 lg:gap-10"
+      className="group shrink-0 w-[62vw] sm:w-[34rem] lg:w-[44rem] flex flex-col sm:flex-row sm:items-center sm:gap-6 lg:gap-10"
     >
       <div className="w-full sm:w-1/2 shrink-0 overflow-hidden rounded-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
