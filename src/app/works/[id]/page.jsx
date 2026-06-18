@@ -8,6 +8,7 @@ import { getProject } from '@/lib/microcms';
 import PageHeader from '@/components/layout/PageHeader';
 import Footer from '@/components/layout/Footer';
 import CustomCursor from '@/components/CustomCursor';
+import WaveBackground from '@/components/WaveBackground';
 
 export const revalidate = 60;
 
@@ -32,6 +33,7 @@ export default async function WorkDetailPage({ params }) {
 
   return (
     <>
+      <WaveBackground />
       <CustomCursor />
       <PageHeader />
 

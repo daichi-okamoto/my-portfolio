@@ -41,25 +41,25 @@ export default async function WorksPage() {
           </div>
         </div>
 
-        {/* 一覧（横並びカード／カード間は広めのGAP） */}
-        <div className="w-[88%] max-w-6xl mx-auto flex flex-col gap-24 lg:gap-32">
+        {/* 一覧（縦並びカードの2カラムグリッド） */}
+        <div className="w-[88%] max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-16 lg:gap-y-24">
           {projects.map((project, i) => {
             return (
               <Link
                 key={project.id}
                 href={`/works/${project.id}`}
                 data-cursor="view"
-                className="group flex flex-col md:flex-row md:items-center gap-8 lg:gap-14"
+                className="group block"
               >
-                <div className="md:w-[52%] shrink-0 overflow-hidden rounded-sm">
+                <div className="overflow-hidden rounded-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-[clamp(220px,30vw,360px)] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>
-                <div className="md:flex-1">
+                <div className="mt-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="font-serif text-accent text-sm tracking-[0.3em]">
                       {String(i + 1).padStart(2, '0')}

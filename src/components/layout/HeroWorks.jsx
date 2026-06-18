@@ -123,9 +123,10 @@ export default function HeroWorks({ projects, posts }) {
       {/* 画面に固定 */}
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         {/* 3Dオブジェクト（前半で表示→終盤フェードアウト） */}
+        {/* SPは右上へ寄せる。sm以上は中央（従来どおり） */}
         <motion.div
           style={{ opacity: objectOpacity }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 -translate-y-[20%] translate-x-[12%] sm:translate-y-0 sm:translate-x-0"
         >
           <BlobCanvas />
         </motion.div>
@@ -288,7 +289,7 @@ function StageText({ stage, index, progress, p1 }) {
   return (
     <motion.div
       style={{ opacity, y }}
-      className="absolute inset-0 flex flex-col items-start justify-center text-left px-8 md:px-16 lg:pl-20 lg:pr-[52%]"
+      className="absolute inset-0 flex flex-col items-start justify-end pb-[22vh] sm:justify-center sm:pb-0 text-left px-8 md:px-16 lg:pl-20 lg:pr-[52%]"
     >
       <p className="font-serif text-accent tracking-[0.5em] text-[10px] md:text-xs mb-5">
         {stage.label}

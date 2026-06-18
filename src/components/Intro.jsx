@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import WaveBackground from './WaveBackground';
 
 // CMS未接続などで画像が無いときのフォールバック
 const FALLBACK_IMAGES = [
@@ -74,11 +75,14 @@ export default function Intro({ onFinish, projects }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] overflow-hidden flex items-center justify-center"
+      className="fixed inset-0 z-[100] overflow-hidden flex items-center justify-center transform-gpu"
       style={{ backgroundColor: 'rgb(var(--color-bg))' }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
     >
+      {/* 他ページと同じ背景（波グラデ）を敷く。単色は読み込み前のフォールバック */}
+      <WaveBackground />
+
       {/* 1つのフレームが連続して縮みながら、中身（src）だけ切り替わる */}
       <AnimatePresence>
         {phase === 'montage' && (
