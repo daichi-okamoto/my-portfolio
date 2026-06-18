@@ -126,7 +126,7 @@ export default function HeroWorks({ projects, posts }) {
         {/* SPは右上へ寄せる。sm以上は中央（従来どおり） */}
         <motion.div
           style={{ opacity: objectOpacity }}
-          className="absolute inset-0 z-0 -translate-y-[20%] translate-x-[12%] sm:translate-y-0 sm:translate-x-0"
+          className="absolute inset-0 z-0 -translate-y-[20%] sm:translate-y-0"
         >
           <BlobCanvas />
         </motion.div>
@@ -234,7 +234,7 @@ export default function HeroWorks({ projects, posts }) {
         {/* 実績区間で右下に出すブログへのショートカット（works開始でフェードイン） */}
         <motion.div
           style={{ opacity: worksOpacity, pointerEvents: blogPE }}
-          className="absolute bottom-4 sm:bottom-8 right-8 md:right-16 lg:right-20 z-30"
+          className="hidden sm:block absolute bottom-4 sm:bottom-8 right-8 md:right-16 lg:right-20 z-30"
         >
           <Link
             href="/blog"
